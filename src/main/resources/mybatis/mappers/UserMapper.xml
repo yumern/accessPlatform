@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzu.hezhifeng.dao.UserDAO">
+    <sql id="sqlWhereCondition">
+        WHERE 1 = 1
+        <if test="param.id != null">
+            AND id = #{param.id}
+        </if>
+        <if test="param.name != null">
+            AND name = #{param.name}
+        </if>
+        <if test="param.password">
+            AND password = #{param.password}
+        </if>
+        <if test="param.code != null">
+            AND code = #{param.code}
+        </if>
+    </sql>
+
+    <insert id="insert" keyProperty="data.id" useGeneratedKeys="true">
+        insert into user_information (
+             name,
+             sex,
+             password,
+             gmt_create,
+             birthday,
+             code
+        )VALUES (
+            #{data.name},
+            #{data.sex},
+            #{data.password},
+            #{data.gmtCreate},
+            #{data.birthday},
+            #{data.code}
+        )
+    </insert>
+    <update id="update">
+        UPDATE user_information
+        SET
+        gmt_modified = #{data.gmtModified}
+        <if test="data.name != null">
+            ,name = #{data.name}
+        </if>
+        <if test="data.password != null">
+            ,password = #{data.password}
+        </if>
+        where
+        id = #{data.id}
+    </update>
+    <select id="list" resultType="com.zzu.hezhifeng.pojo.DO.User">
+        SELECT *
+        FROM user_information
+        <include refid="sqlWhereCondition"/>
+        order by id
+    </select>
+    <delete id="delete">
+        delete from user_information
+        where id = #{data.id}
+    </delete>
+    <select id="count" resultType="long">
+        select COUNT(1)
+        FROM user_information
+        <include refid="sqlWhereCondition"/>
+    </select>
+</mapper>

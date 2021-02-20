@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzu.hezhifeng.dao.ProjectRelationDAO">
+    <sql id="sqlWhereCondition">
+        WHERE 1 = 1
+        <if test="param.id != null">
+            AND id = #{param.id}
+        </if>
+        <if test="param.code  != null">
+            AND code  = #{param.code }
+        </if>
+        <if test="param.projectId ">
+            AND project_id  = #{param.projectId}
+        </if>
+        <if test="param.projectDesc != null">
+            AND project_desc = #{param.projectDesc}
+        </if>
+        <if test="param.sourceIp != null">
+            AND source_ip = #{param.sourceIp}
+        </if>
+        <if test="param.sourcePort != null">
+            AND source_port = #{param.sourcePort}
+        </if>
+        <if test="param.targetIp != null">
+            AND target_ip = #{param.targetIp}
+        </if>
+        <if test="param.targetPort != null">
+            AND target_port = #{param.targetPort}
+        </if>
+    </sql>
+
+    <insert id="insert" keyProperty="data.id" useGeneratedKeys="true">
+        insert into project_relataion (
+             code
+             ,project_id
+             ,project_desc
+             ,project_num
+             ,source_ip
+             ,source_port
+             ,target_ip
+             ,target_port
+        )VALUES (
+            #{data.code}
+            ,#{data.projectId}
+            ,#{data.projectDesc}
+            ,#{data.projectNum}
+            ,#{data.sourceIp}
+            ,#{data.sourcePort}
+            ,#{data.targetIp}
+            ,#{data.targetPort}
+        )
+    </insert>
+    <update id="update">
+        UPDATE project_relataion
+        SET
+        gmt_modified = #{data.gmtModified}
+        <if test="data.code != null">
+            ,code = #{data.code}
+        </if>
+        <if test="data.projectId != null">
+            ,project_id = #{data.projectId}
+        </if>
+        <if test="data.projectDesc !- null">
+            ,project_desc = #{data.projectDesc}
+        </if>
+        <if test="data.projectNul != null">
+            ,project_num = #{data.projectNum}
+        </if>
+        <if test="data.sourceIp != null">
+            ,source_ip = #{data.sourceIp}
+        </if>
+        <if test="data.sourcePort != null">
+            ,source_port = #{data.sourcePort}}
+        </if>
+        <if test="data.targetIp != null">
+            ,target_ip = #{data.targetIp}
+        </if>
+        <if test="data.targetPort != null">
+            ,target_port = #{data.targetPort}
+        </if>
+        where
+        id = #{data.id}
+    </update>
+    <select id="list" resultType="com.zzu.hezhifeng.pojo.DO.ProjectRelation">
+        SELECT *
+        FROM project_relataion
+        <include refid="sqlWhereCondition"/>
+        order by id
+    </select>
+    <delete id="delete">
+        delete from project_relataion
+        where id = #{data.id}
+    </delete>
+    <select id="count" resultType="long">
+        select COUNT(1)
+        FROM project_relataion
+        <include refid="sqlWhereCondition"/>
+    </select>
+</mapper>
