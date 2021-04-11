@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @Data
 public class DataObj {
-    private String hostAddress;
+    private String sourceAddress;
     private String message;
+    private String targetAddress;
 }
