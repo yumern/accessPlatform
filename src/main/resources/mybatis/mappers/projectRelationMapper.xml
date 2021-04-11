@@ -83,7 +83,7 @@
         where
         id = #{data.id}
     </update>
-    <select id="list" resultType="com.zzu.hezhifeng.pojo.DO.ProjectRelation">
+    <select id="list" resultType="com.zzu.hezhifeng.pojo.DO.ProjectRelationDO">
         SELECT *
         FROM project_relataion
         <include refid="sqlWhereCondition"/>

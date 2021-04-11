@@ -1,15 +1,13 @@
 package com.zzu.hezhifeng.pojo.Param;
 
+import com.zzu.hezhifeng.common.base.pojo.BaseParam;
+
 import java.util.Date;
 
 /**
  * 用户-项目关联实体
  */
-public class ProjectRelationParam {
-    /**
-     * 主键id
-     */
-    private Long id;
+public class ProjectRelationParam extends BaseParam {
     /**
      * 项目空间id，用以区分不同用户的项目空间
      */
@@ -46,14 +44,6 @@ public class ProjectRelationParam {
      * 目标端口
      */
     private String targetPort;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getCode() {
         return code;
@@ -130,7 +120,6 @@ public class ProjectRelationParam {
     @Override
     public String toString() {
         return "projectRelation{" +
-                "id=" + id +
                 ", code='" + code + '\'' +
                 ", projectId='" + projectId + '\'' +
                 ", projectDesc='" + projectDesc + '\'' +

@@ -1,6 +1,6 @@
 package com.zzu.hezhifeng.stater;
 
-import com.zzu.hezhifeng.pojo.DO.User;
+import com.zzu.hezhifeng.pojo.DO.UserDO;
 import com.zzu.hezhifeng.pojo.Param.UserParam;
 import com.zzu.hezhifeng.service.UserService;
 import org.junit.Test;
@@ -8,29 +8,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Optional;
+import com.google.common.base.Optional;
 
-public class UserServiceTest extends BaseTest{
+public class UserDOServiceTest extends BaseTest{
 
     @Autowired
     private UserService userService;
 
     @Test
     public void testList(){
-        ArrayList<User> list = userService.list(new UserParam());
-        for (User user : list){
-            System.out.println(user);
+        ArrayList<UserDO> list = userService.list(new UserParam());
+        for (UserDO userDO : list){
+            System.out.println(userDO);
         }
     }
 
     @Test
     public void testInsert(){
-        User user = new User();
-        user.setCode("2");
-        user.setGmtCreate(new Date());
-        user.setName("ceshi");
-        user.setPassword("123456");
-        Long res = userService.insert(user);
+        UserDO userDO = new UserDO();
+        userDO.setCode("2");
+        userDO.setGmtCreate(new Date());
+        userDO.setName("ceshi");
+        userDO.setPassword("123456");
+        Long res = userService.insert(userDO);
         System.out.println(res);
     }
     

@@ -1,15 +1,13 @@
 package com.zzu.hezhifeng.pojo.Param;
 
+import com.zzu.hezhifeng.common.base.pojo.BaseParam;
+
 import java.util.Date;
 
 /**
  * 用户实体
  */
-public class UserParam {
-    /**
-     * id
-     */
-    Long id;
+public class UserParam extends BaseParam {
     /**
      * 用户名
      */
@@ -38,14 +36,6 @@ public class UserParam {
      * 记录修改时间
      */
     Date gmdModified;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -106,7 +96,6 @@ public class UserParam {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", sex='" + sex + '\'' +

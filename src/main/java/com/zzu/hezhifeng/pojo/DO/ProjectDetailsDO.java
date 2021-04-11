@@ -1,15 +1,13 @@
 package com.zzu.hezhifeng.pojo.DO;
 
+import com.zzu.hezhifeng.common.base.pojo.BaseDO;
+
 import java.util.Date;
 
 /**
  * 项目详情实体
  */
-public class ProjectDetails {
-    /**
-     * 自增主键
-     */
-    private Long id;
+public class ProjectDetailsDO extends BaseDO {
     /**
      * 隶属项目Id
      */
@@ -30,14 +28,6 @@ public class ProjectDetails {
      * value值
      */
     private String value;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getProjectId() {
         return projectId;
@@ -82,7 +72,6 @@ public class ProjectDetails {
     @Override
     public String toString() {
         return "projectDetails{" +
-                "id=" + id +
                 ", projectId='" + projectId + '\'' +
                 ", projectName='" + projectName + '\'' +
                 ", key='" + key + '\'' +

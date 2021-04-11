@@ -54,7 +54,7 @@
         where
         id = #{data.id}
     </update>
-    <select id="list" resultType="com.zzu.hezhifeng.pojo.DO.ProjectDetails">
+    <select id="list" resultType="com.zzu.hezhifeng.pojo.DO.ProjectDetailsDO">
         SELECT *
         FROM project_details
         <include refid="sqlWhereCondition"/>

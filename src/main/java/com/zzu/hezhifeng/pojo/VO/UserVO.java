@@ -1,15 +1,13 @@
 package com.zzu.hezhifeng.pojo.VO;
 
+import com.zzu.hezhifeng.common.base.pojo.BaseVO;
+
 import java.util.Date;
 
 /**
  * 用户实体
  */
-public class UserVO {
-    /**
-     * id
-     */
-    Long id;
+public class UserVO extends BaseVO {
     /**
      * 用户名
      */
@@ -38,14 +36,6 @@ public class UserVO {
      * 记录修改时间
      */
     Date gmdModified;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -106,7 +96,6 @@ public class UserVO {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", sex='" + sex + '\'' +

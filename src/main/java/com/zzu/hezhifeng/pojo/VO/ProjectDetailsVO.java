@@ -1,15 +1,13 @@
 package com.zzu.hezhifeng.pojo.VO;
 
+import com.zzu.hezhifeng.common.base.pojo.BaseVO;
+
 import java.util.Date;
 
 /**
  * 项目详情实体
  */
-public class ProjectDetailsVO {
-    /**
-     * 自增主键
-     */
-    private Long id;
+public class ProjectDetailsVO extends BaseVO {
     /**
      * 隶属项目Id
      */
@@ -30,14 +28,6 @@ public class ProjectDetailsVO {
      * value值
      */
     private String value;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Date getGmdModified() {
         return gmdModified;
@@ -82,7 +72,6 @@ public class ProjectDetailsVO {
     @Override
     public String toString() {
         return "projectDetails{" +
-                "id=" + id +
                 ", projectId='" + projectId + '\'' +
                 ", projectName='" + projectName + '\'' +
                 ", key='" + key + '\'' +
