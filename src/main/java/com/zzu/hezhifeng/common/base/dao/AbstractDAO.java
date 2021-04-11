@@ -39,4 +39,11 @@ public interface AbstractDAO<D, V, P> {
      * @return
      */
     ArrayList<V> list(P param);
+
+    /**
+     * 统计元素数量
+     * @param param
+     * @return
+     */
+    Long count(P param);
 }
