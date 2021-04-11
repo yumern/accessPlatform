@@ -26,7 +26,7 @@ public abstract class AbstractServiceImpl<D extends BaseDO, V extends BaseVO, P 
     }
 
     @Override
-    public void update(D data) {
+    public void update(V data) {
         this.getDAO().update(data);
     }
 

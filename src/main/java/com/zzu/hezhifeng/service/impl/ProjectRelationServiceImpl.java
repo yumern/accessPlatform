@@ -1,5 +1,6 @@
 package com.zzu.hezhifeng.service.impl;
 
+import com.zzu.hezhifeng.common.base.dao.AbstractDAO;
 import com.zzu.hezhifeng.dao.ProjectRelationDAO;
 import com.zzu.hezhifeng.pojo.DO.ProjectRelationDO;
 import com.zzu.hezhifeng.pojo.Param.ProjectRelationParam;
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import com.google.common.base.Optional;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProjectRelationServiceImpl implements ProjectRelationService {
     @Autowired
     private ProjectRelationDAO relationDAO;
@@ -26,7 +29,7 @@ public class ProjectRelationServiceImpl implements ProjectRelationService {
     }
 
     @Override
-    public void update(ProjectRelationDO data) {
+    public void update(ProjectRelationVO data) {
         relationDAO.update(data);
     }
 
@@ -43,5 +46,10 @@ public class ProjectRelationServiceImpl implements ProjectRelationService {
     public ArrayList<ProjectRelationVO> list(ProjectRelationParam param) {
         ArrayList<ProjectRelationVO> relationList = relationDAO.list(param);
         return relationList;
+    }
+
+    @Override
+    public AbstractDAO getDAO() {
+        return this.relationDAO;
     }
 }

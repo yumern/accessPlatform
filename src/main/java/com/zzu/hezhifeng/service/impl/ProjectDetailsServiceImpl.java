@@ -1,5 +1,6 @@
 package com.zzu.hezhifeng.service.impl;
 
+import com.zzu.hezhifeng.common.base.dao.AbstractDAO;
 import com.zzu.hezhifeng.dao.ProjectDetailsDAO;
 import com.zzu.hezhifeng.pojo.DO.ProjectDetailsDO;
 import com.zzu.hezhifeng.pojo.Param.ProjectDetailsParam;
@@ -29,7 +30,7 @@ public class ProjectDetailsServiceImpl implements ProjectDetailsService {
     }
 
     @Override
-    public void update(ProjectDetailsDO data) {
+    public void update(ProjectDetailsVO data) {
         projectDetailsDAO.update(data);
     }
 
@@ -46,5 +47,10 @@ public class ProjectDetailsServiceImpl implements ProjectDetailsService {
     public ArrayList<ProjectDetailsVO> list(ProjectDetailsParam param) {
         ArrayList<ProjectDetailsVO> detailList = projectDetailsDAO.list(param);
         return detailList;
+    }
+
+    @Override
+    public AbstractDAO getDAO() {
+        return this.projectDetailsDAO;
     }
 }

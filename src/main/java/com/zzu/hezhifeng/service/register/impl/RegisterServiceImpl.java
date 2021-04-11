@@ -1,6 +1,7 @@
 package com.zzu.hezhifeng.service.register.impl;
 
 import com.google.common.base.Optional;
+import com.zzu.hezhifeng.common.base.dao.AbstractDAO;
 import com.zzu.hezhifeng.common.base.service.AbstractService;
 import com.zzu.hezhifeng.dao.UserDAO;
 import com.zzu.hezhifeng.pojo.DO.UserDO;
@@ -8,11 +9,13 @@ import com.zzu.hezhifeng.pojo.Param.UserParam;
 import com.zzu.hezhifeng.pojo.VO.UserVO;
 import com.zzu.hezhifeng.service.register.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 
-public class RegisterServiceImpl implements RegisterService, AbstractService<UserDO, UserVO, UserParam> {
+@Service
+public class RegisterServiceImpl implements RegisterService {
 
     @Autowired
     private UserDAO userDAO;
@@ -23,13 +26,20 @@ public class RegisterServiceImpl implements RegisterService, AbstractService<Use
         return insert;
     }
 
+    public Long add(UserVO userVO) {
+        Long res = userDAO.insert(userVO);
+        userVO.setCode(String.valueOf(res));
+        userDAO.update(userVO);
+        return null;
+    }
+
     @Override
     public void delete(UserVO data) {
         userDAO.delete(data);
     }
 
     @Override
-    public void update(UserDO data) {
+    public void update(UserVO data) {
         userDAO.update(data);
     }
 
@@ -46,5 +56,10 @@ public class RegisterServiceImpl implements RegisterService, AbstractService<Use
     public ArrayList<UserVO> list(UserParam param) {
         ArrayList<UserVO> list = userDAO.list(param);
         return list;
+    }
+
+    @Override
+    public AbstractDAO getDAO() {
+        return this.userDAO;
     }
 }

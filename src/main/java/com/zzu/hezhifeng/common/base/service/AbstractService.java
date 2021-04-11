@@ -26,7 +26,7 @@ public interface AbstractService<D, V, P> {
      * 从数据库中更新一个元素
      * @param data
      */
-    void update(D data);
+    void update(V data);
 
     /**
      * 查找数据库中的元素
