@@ -49,7 +49,7 @@
         where
         id = #{data.id}
     </update>
-    <select id="list" resultType="com.zzu.hezhifeng.pojo.DO.User">
+    <select id="list" resultType="com.zzu.hezhifeng.pojo.DO.UserDO">
         SELECT *
         FROM user_information
         <include refid="sqlWhereCondition"/>

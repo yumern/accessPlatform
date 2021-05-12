@@ -3,29 +3,40 @@ package com.zzu.hezhifeng.common.utils;
 import java.io.Serializable;
 
 public class CallResult<T> implements Serializable {
-    private static final Long seriaVersionUID = -1231234234L;
-    private Integer code;
-    private String message;
-    private T data;
-    private String exception;
+   private T data;
+   private Integer code;
+   private String message;
+   private String exception;
 
-    protected CallResult(Integer code, String message, T data, Throwable throwable){
-        this.code = code;
-        this.message = message;
-        this.data = data;
-        this.exception = throwable.toString();
-    }
-
-    public static <T> CallResult<T> success(T data){
-        return new CallResult(1, "success", data, (Throwable)null);
-    }
-    public static CallResult success(){
+    public static CallResult success() {
         return success((Object)null);
     }
-    public static CallResult error(Integer code, String message, Throwable throwable){
-        return new CallResult(code, message, throwable, throwable);
+
+    public static <T> CallResult<T> success(T data) {
+        return new CallResult(StatusCode.SUCCESS, StatusCode.SUCCESS.getDesc(), data, (Throwable)null);
     }
 
+    public static CallResult error(StatusCode code, String msg, Throwable throwable) {
+        return new CallResult(code, msg, throwable.getMessage(), throwable);
+    }
+
+    public CallResult() {
+    }
+
+    protected CallResult(StatusCode code, String message, T data, Throwable throwable) {
+        this.code = code.getCode();
+        this.message = message;
+        this.data = data;
+        this.exception = throwable.getMessage();
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
 
     public Integer getCode() {
         return code;
@@ -43,29 +54,11 @@ public class CallResult<T> implements Serializable {
         this.message = message;
     }
 
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
     public String getException() {
         return exception;
     }
 
     public void setException(String exception) {
         this.exception = exception;
-    }
-
-    @Override
-    public String toString() {
-        return "CallResult{" +
-                "code=" + code +
-                ", message='" + message + '\'' +
-                ", data=" + data +
-                ", exception='" + exception + '\'' +
-                '}';
     }
 }

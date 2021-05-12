@@ -1,6 +1,6 @@
 package com.zzu.hezhifeng.dao.config;
 
-import com.alibaba.druid.pool.DruidDataSource;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
@@ -8,14 +8,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
 
 /**
  * 数据库配置
@@ -52,10 +50,10 @@ public class DatasourceConfig {
     @Bean
     public DataSource dataSource(){
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
-        dataSourceBuilder.password("qaz987123");
-        dataSourceBuilder.username("root");
-        dataSourceBuilder.url("jdbc:mysql://localhost:3306/access_platform_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT&allowPublicKeyRetrieval=true");
+        dataSourceBuilder.driverClassName(driverClassName);
+        dataSourceBuilder.password(password);
+        dataSourceBuilder.username(userName);
+        dataSourceBuilder.url(url);
         DataSource dataSource = dataSourceBuilder.build();
         return dataSource;
     }

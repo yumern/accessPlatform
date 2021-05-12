@@ -1,38 +1,37 @@
 package com.zzu.hezhifeng.service.impl;
 
-import com.zzu.hezhifeng.dao.ProjectRelationDAO;
-import com.zzu.hezhifeng.pojo.DO.ProjectRelation;
-import com.zzu.hezhifeng.pojo.DO.User;
-import com.zzu.hezhifeng.pojo.Param.ProjectRelationParam;
+import com.zzu.hezhifeng.common.base.dao.AbstractDAO;
 import com.zzu.hezhifeng.service.ProjectRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
-import java.util.Optional;
+import com.google.common.base.Optional;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProjectRelationServiceImpl implements ProjectRelationService {
     @Autowired
     private ProjectRelationDAO relationDAO;
 
     @Override
-    public Long insert(ProjectRelation data) {
+    public Long insert(ProjectRelationVO data) {
         Long res = relationDAO.insert(data);
         return res;
     }
 
     @Override
-    public void delete(ProjectRelation data) {
+    public void delete(ProjectRelationVO data) {
         relationDAO.delete(data);
     }
 
     @Override
-    public void update(ProjectRelation data) {
+    public void update(ProjectRelationVO data) {
         relationDAO.update(data);
     }
 
     @Override
-    public Optional<ProjectRelation> find(ProjectRelationParam param) {
-        ArrayList<ProjectRelation> relationList = relationDAO.list(param);
+    public Optional<ProjectRelationVO> find(ProjectRelationParam param) {
+        ArrayList<ProjectRelationVO> relationList = relationDAO.list(param);
         if (relationList.isEmpty()){
             throw new NullPointerException("元素不存在");
         }
@@ -40,8 +39,13 @@ public class ProjectRelationServiceImpl implements ProjectRelationService {
     }
 
     @Override
-    public ArrayList<ProjectRelation> list(ProjectRelationParam param) {
-        ArrayList<ProjectRelation> relationList = relationDAO.list(param);
+    public ArrayList<ProjectRelationVO> list(ProjectRelationParam param) {
+        ArrayList<ProjectRelationVO> relationList = relationDAO.list(param);
         return relationList;
+    }
+
+    @Override
+    public AbstractDAO getDAO() {
+        return this.relationDAO;
     }
 }
