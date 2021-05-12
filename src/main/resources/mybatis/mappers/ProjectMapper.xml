@@ -2,65 +2,69 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zzu.hezhifeng.dao.UserDAO">
+<mapper namespace="com.zzu.hezhifeng.dao.ProjectDAO">
     <sql id="sqlWhereCondition">
         WHERE 1 = 1
         <if test="param.id != null">
             AND id = #{param.id}
         </if>
-        <if test="param.userName != null">
-            AND user_name = #{param.userName}
+        <if test="param.userId != null">
+            AND user_id = #{param.userId}
         </if>
-        <if test="param.password">
-            AND password = #{param.password}
+        <if test="param.name">
+            AND name = #{param.name}
         </if>
-        <if test="param.secretKey != null">
-            AND secret_key = #{param.secretKey}
+        <if test="param.description != null">
+            AND description = #{param.description}
+        </if>
+        <if test="param.listenIp != null">
+            AND listen_ip = #{param.listenIp}
         </if>
     </sql>
 
     <insert id="insert" keyProperty="data.id" useGeneratedKeys="true">
-        insert into user_information (
-             user_name,
-             gmt_create,
-             password,
-             secret_key
+        insert into project_information (
+             name,
+             gmtCreate,
+             user_id,
+             description,
+             listen_ip,
         )VALUES (
-            #{data.userName},
+            #{data.name},
             #{data.gmtCreate},
-            #{data.password},
-            #{data.secretKey}
+            #{data.userId},
+            #{data.listenIp}
         )
     </insert>
     <update id="update">
-        UPDATE user_information
+        UPDATE project_information
         SET
         gmt_modified = #{data.gmtModified}
-        <if test="data.userName != null">
-            ,userName = #{data.user_name}
+        <if test="data.name != null">
+            ,name = #{data.name}
         </if>
-        <if test="data.password != null">
-            ,password = #{data.password}
+        <if test="data.userId != null">
+            ,user_id = #{data.userId}
         </if>
-        <if test="data.secretKey != null">
-            , secret_key = #{data.secretKey}
+        <if test="data.listenIp != null">
+            , listen_ip = #{data.listenIp}
         </if>
         where
         id = #{data.id}
     </update>
     <select id="list" resultType="com.zzu.hezhifeng.pojo.DO.UserDO">
         SELECT *
-        FROM user_information
+        FROM project_information
         <include refid="sqlWhereCondition"/>
         order by id
     </select>
     <delete id="delete">
-        delete from user_information
+        delete from project_information
         where id = #{data.id}
     </delete>
     <select id="count" resultType="long">
         select COUNT(1)
-        FROM user_information
+        FROM project_information
         <include refid="sqlWhereCondition"/>
     </select>
 </mapper>
