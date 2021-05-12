@@ -2,41 +2,15 @@ package com.zzu.hezhifeng.service;
 
 import java.util.ArrayList;
 import com.google.common.base.Optional;
+import com.zzu.hezhifeng.common.base.service.AbstractDVService;
+import com.zzu.hezhifeng.common.base.service.AbstractService;
+import com.zzu.hezhifeng.pojo.DO.UserDO;
+import com.zzu.hezhifeng.pojo.Param.UserParam;
+import com.zzu.hezhifeng.pojo.VO.UserVO;
 
 /**
  * user数据库的服务接口
  */
-public interface UserService{
-    /**
-     * 查找数据
-     * @param user
-     * @return
-     */
-    ArrayList<UserDO> list(UserParam user);
+public interface UserService extends AbstractService<UserDO, UserVO, UserParam> {
 
-    /**
-     * 更新数据
-     * @param userDO
-     */
-    void update(UserDO userDO);
-
-    /**
-     * 根据id获取元素
-     * @param id
-     * @return
-     */
-    Optional<UserDO> find(Long id);
-
-    /**
-     * 插入一条数据
-     * @param userDO
-     * @return
-     */
-    Long insert(UserDO userDO);
-
-    /**
-     * 删除一条数据
-     * @param userDO
-     */
-    void delete(UserDO userDO);
 }
