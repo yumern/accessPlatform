@@ -15,7 +15,7 @@
 
     <insert id="insert" keyProperty="data.id" useGeneratedKeys="true">
         insert into history_record (
-             gmt_create,
+             gmt_create,git remote add origin git
              record_id,
              res,
              config
