@@ -6,6 +6,8 @@ import com.zzu.hezhifeng.service.register.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 /**
  * 用户注册与删除
  */
@@ -18,8 +20,9 @@ public class RegisterController {
 
     @RequestMapping(method = RequestMethod.POST)
     public CallResult  register(@RequestBody UserVO userVO){
+        userVO.setGmtCreate(new Date());
         Long insert = registerService.insert(userVO);
-        return CallResult.success();
+        return CallResult.success(insert);
     }
 
     @RequestMapping(

@@ -13,21 +13,20 @@ public class CallResult<T> implements Serializable {
     }
 
     public static <T> CallResult<T> success(T data) {
-        return new CallResult(StatusCode.SUCCESS, StatusCode.SUCCESS.getDesc(), data, (Throwable)null);
+        return new CallResult(StatusCode.SUCCESS, StatusCode.SUCCESS.getDesc(), data);
     }
 
-    public static CallResult error(StatusCode code, String msg, Throwable throwable) {
-        return new CallResult(code, msg, throwable.getMessage(), throwable);
+    public static<T> CallResult error(T data) {
+        return new CallResult(StatusCode.FAILED, StatusCode.FAILED.getDesc(), data);
     }
 
     public CallResult() {
     }
 
-    protected CallResult(StatusCode code, String message, T data, Throwable throwable) {
+    protected CallResult(StatusCode code, String message, T data) {
         this.code = code.getCode();
         this.message = message;
         this.data = data;
-        this.exception = throwable.getMessage();
     }
 
     public T getData() {
